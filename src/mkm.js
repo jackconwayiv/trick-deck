@@ -19,6 +19,11 @@ const whiteTricks = [
     cost: "4W",
     text: "Exile target creature unless it is a Detective.",
   },
+  {
+    name: "Not So Fast",
+    cost: "4W",
+    text: "Tap target creature, remove it from combat, and put a number of stun counters on it equal to its power.",
+  },
 ];
 
 const blueTricks = [
@@ -29,8 +34,8 @@ const blueTricks = [
   },
   {
     name: "Coffee Break",
-    cost: "U",
-    text: "Tap target creature, remove it from combat, and put a stun counter on it.",
+    cost: "4U",
+    text: "Tap target creature, remove it from combat, and put a number of stun counters on it equal to its toughness.",
   },
   {
     name: "Fleeting Glimpse",
@@ -41,6 +46,11 @@ const blueTricks = [
     name: "False Lead",
     cost: "2UU",
     text: "Choose one -- Exile a Clue you control, or put target creature on top of its owner's library.",
+  },
+  {
+    name: "Gross Extortion",
+    cost: "1U",
+    text: "Spellbind target creature. (Exile it. You may cast it from exile by paying an additional 2 mana.)",
   },
 ];
 
@@ -57,13 +67,18 @@ const blackTricks = [
   },
   {
     name: "Got a Bad Feeling",
-    cost: "1B",
+    cost: "2B",
     text: "Target creature gets -X/-X until end of turn, where X is half the number of mana permanents you control, rounded up.",
   },
   {
     name: "You're In It Now",
     cost: "1B",
     text: "Blight a (nonbasic) land you control (that isn't blighted). (Whenever it becomes tapped, you lose 1 life.)",
+  },
+  {
+    name: "Sloppy Work",
+    cost: "2BB",
+    text: "Discard a (nonland) card, then target creature gets -X/-X until end of turn, where X is the total mana value of cards in your graveyard.",
   },
 ];
 const redTricks = [
@@ -87,6 +102,11 @@ const redTricks = [
     cost: "2R",
     text: "Deal X damage to target creature, where X is half the number of your mana permanents, rounded up.",
   },
+  {
+    name: "Make an Enemy",
+    cost: "1R",
+    text: "Target creature becomes reckless. (It must attack each combat if able and must attack a random Nexus with the lowest life total if able.)",
+  },
 ];
 const greenTricks = [
   {
@@ -108,6 +128,11 @@ const greenTricks = [
     name: "Send into Hiding",
     cost: "2G",
     text: "Cloak target creature. (Turn it face-down. It can be turned face up at any time by paying its mana cost.)",
+  },
+  {
+    name: "Sinking Suspicion",
+    cost: "2GG",
+    text: "The next time target creature deals combat damage this turn, you get that many Woe counters.",
   },
 ];
 

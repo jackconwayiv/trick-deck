@@ -2,22 +2,25 @@ import { useState } from "react";
 import trickDeck from "./mkm.js";
 import "./styles.css";
 export default function App() {
-  const [log, setLog] = useState<string[]>([]);
-
+  type Log = { title?: string; text: string; color: string };
   type Color = "W" | "U" | "B" | "R" | "G";
 
+  const [log, setLog] = useState<Log[]>([]);
+
   const colorDictionary = {
-    W: { color: "#FFFFEE", symbol: "☀️" },
-    U: { color: "#EEEEFF", symbol: "💧" },
-    B: { color: "#EEEEEE", symbol: "💀" },
-    R: { color: "#FFEEEE", symbol: "🔥" },
-    G: { color: "#EEFFEE", symbol: "🌳" },
+    W: { color: "#fff2cc", symbol: "☀️" },
+    U: { color: "#cfe2f3", symbol: "💧" },
+    B: { color: "#d9d2e9", symbol: "💀" },
+    R: { color: "#f4cccc", symbol: "🔥" },
+    G: { color: "#d9ead3", symbol: "🌳" },
   };
 
   const rollDice = (color: string) => {
+    //reset the div scroll to topmost position on click
+    const bgColor = log.length % 2 === 0 ? "#E1E1E1" : "#EDEDED";
     if (rollD8() < 3) {
       drawTrick(color);
-    } else setLog(["All Clear", ...log]);
+    } else setLog([{ text: "All Clear", color: bgColor }, ...log]);
   };
   const rollD8 = () => {
     return Math.floor(Math.random() * 8) + 1;
@@ -27,13 +30,18 @@ export default function App() {
     const selectedCards = trickDeck.filter((card) => card.cost.includes(color));
     const index = Math.floor(Math.random() * selectedCards.length);
     const card = selectedCards[index];
+    //refactor to do this without rewriting into newCard
     const newCard = {
       name: card.name,
       cost: `(${card.cost})`,
       text: card.text,
     };
-    const newLogLine = Object.values(newCard).join(" ");
-    setLog([newLogLine, ...log]);
+    const newLogEntry = {
+      color: colorDictionary[getColor(newCard.cost) as Color].color,
+      title: `${newCard.name} ${newCard.cost}`,
+      text: card.text,
+    };
+    setLog([newLogEntry, ...log]);
   };
 
   const getColor = (line: string) => {
@@ -43,19 +51,23 @@ export default function App() {
   };
 
   const renderLog = () => {
-    return log.map((line, index) => (
-      <p
+    return log.map((entry, index) => (
+      <div
         style={{
-          padding: "5px",
-          backgroundColor: line.includes(")")
-            ? colorDictionary[getColor(line) as Color].color
-            : "#FEFEFE",
-          border: index === 0 ? "1px black solid" : "1px gray dashed",
+          margin: "10px",
+          padding: "0",
+          backgroundColor: entry.color,
+          border: "1px black solid",
         }}
         key={index}
       >
-        {line}
-      </p>
+        {entry.title && (
+          <p style={{ margin: "5px", padding: "3px" }}>
+            {entry.title?.toUpperCase()}
+          </p>
+        )}
+        <p style={{ margin: "5px", padding: "3px" }}>{entry.text}</p>
+      </div>
     ));
   };
 
