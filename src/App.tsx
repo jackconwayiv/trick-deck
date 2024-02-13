@@ -62,9 +62,12 @@ export default function App() {
         key={index}
       >
         {entry.title && (
-          <p style={{ margin: "5px", padding: "3px" }}>
-            {entry.title?.toUpperCase()}
-          </p>
+          <>
+            <p style={{ margin: "5px", padding: "3px" }}>
+              {entry.title?.toUpperCase()}
+            </p>
+            <p style={{ margin: "3px", padding: "2px" }}>Instant - Trick</p>
+          </>
         )}
         <p style={{ margin: "5px", padding: "3px" }}>{entry.text}</p>
       </div>
@@ -93,7 +96,7 @@ export default function App() {
   };
   return (
     <div className="App">
-      <h1>⚡ Instant -- Trick 🎲</h1>
+      <h1>⚡ Voyager MTG 🎲</h1>
       <h3>Draw from the Trick Deck:</h3>
       {renderKeypad()}
       <div

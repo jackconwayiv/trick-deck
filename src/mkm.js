@@ -17,7 +17,7 @@ const whiteTricks = [
   {
     name: "No Warrant",
     cost: "4W",
-    text: "Exile target creature unless it is a Detective.",
+    text: "Exile target creature unless it's a Detective.",
   },
   {
     name: "Not So Fast",
