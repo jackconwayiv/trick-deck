@@ -5,11 +5,11 @@
 
 .keypad {
   display: grid;
-  grid: 75px / auto auto auto;
-  height: 225px;
-  width: 225px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
   margin: auto;
-  padding: 10px;
+  width: 80vw;
+  height: 50px;
 }
 
 .roll {
