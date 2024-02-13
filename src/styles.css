@@ -1,0 +1,17 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.keypad {
+  display: grid;
+  grid: 75px / auto auto auto;
+  height: 225px;
+  width: 225px;
+  margin: auto;
+  padding: 10px;
+}
+
+.roll {
+  border: 1px solid black;
+}
