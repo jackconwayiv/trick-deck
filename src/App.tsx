@@ -1,7 +1,9 @@
 import { useState } from "react";
-import trickDeck from "./mkm.js";
+import tricks from "./core.js";
 import "./styles.css";
 export default function App() {
+  const setCode = "MKM"; //useparams, with a default "core" if none is provided;
+
   type Log = { title?: string; text: string; color: string };
   type Color = "W" | "U" | "B" | "R" | "G";
 
@@ -27,7 +29,9 @@ export default function App() {
   };
 
   const drawTrick = (color: string) => {
-    const selectedCards = trickDeck.filter((card) => card.cost.includes(color));
+    // const selectedCards = trickDeck.filter((card) => card.cost.includes(color));
+    const selectedCards = tricks.filter((card) => card.cost.includes(color));
+
     const index = Math.floor(Math.random() * selectedCards.length);
     const card = selectedCards[index];
     //refactor to do this without rewriting into newCard
@@ -97,7 +101,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>⚡ Voyager MTG 🎲</h1>
-      <h3>Draw from the Trick Deck:</h3>
+      <h3>Draw from the {setCode} Trick Deck:</h3>
       {renderKeypad()}
       <div
         style={{

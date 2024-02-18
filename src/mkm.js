@@ -24,6 +24,11 @@ const whiteTricks = [
     cost: "4W",
     text: "Tap target creature, remove it from combat, and put a number of stun counters on it equal to its power.",
   },
+  {
+    name: "Cuff 'Em",
+    cost: "2W",
+    text: "Encounter a Handcuffs artifact token. When it enters play, it captures target creature.",
+  },
 ];
 
 const blueTricks = [
@@ -51,6 +56,11 @@ const blueTricks = [
     name: "Gross Extortion",
     cost: "1U",
     text: "Spellbind target creature. (Exile it. You may cast it from exile by paying an additional 2 mana.)",
+  },
+  {
+    name: "Had a Thought",
+    cost: "3U",
+    text: "Choose a random card from your hand with the highest mana value. Spellbind that card. (Exile it. You may cast it from exile by paying an additional 2 mana.)",
   },
 ];
 
@@ -80,6 +90,11 @@ const blackTricks = [
     cost: "2BB",
     text: "Discard a (nonland) card, then target creature gets -X/-X until end of turn, where X is the total mana value of cards in your graveyard.",
   },
+  {
+    name: "Body Count",
+    cost: "B",
+    text: "Target creature gets -X/-X until end of turn, where X is the number of cards in the enemy graveyard.",
+  },
 ];
 const redTricks = [
   {
@@ -107,6 +122,11 @@ const redTricks = [
     cost: "1R",
     text: "Target creature becomes reckless. (It must attack each combat if able and must attack a random Nexus with the lowest life total if able.)",
   },
+  {
+    name: "Blast from the Past",
+    cost: "2R",
+    text: "Deal X damage to target creature, where X is the number of cards in your graveyard.",
+  },
 ];
 const greenTricks = [
   {
@@ -122,7 +142,7 @@ const greenTricks = [
   {
     name: "Unwanted Attention",
     cost: "3G",
-    text: "Encounter a tapped 0/0 Elemental token with X +1/+1 counters on it, where X is the number of creatures plus the number of noncreature tokens you control.",
+    text: "Encounter a tapped 0/0 Elemental token with X +1/+1 counters on it, where X is the number of creatures you control plus the number of noncreature tokens you control.",
   },
   {
     name: "Send into Hiding",
@@ -133,6 +153,11 @@ const greenTricks = [
     name: "Sinking Suspicion",
     cost: "2GG",
     text: "The next time target creature deals combat damage this turn, you get that many Woe counters.",
+  },
+  {
+    name: "Even the Odds",
+    cost: "2GG",
+    text: "Each foe in play grows, then grows again for each slain Nexus. If there are no foes, instead each player encounters a tapped 4/4 green Troll Detective creature token, plus another one for each slain Nexus.",
   },
 ];
 
