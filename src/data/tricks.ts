@@ -1,3 +1,26 @@
+type TrickCardType = {
+  name: string;
+  set: string;
+  cost: string;
+  text: string;
+};
+
+//trick card is an array of strings, always in the same sequence: name, cost, text
+const akhTricks = [
+  [
+    "Eternalize",
+    "4BB",
+    "Exile target creature, then encounter a tapped token copy of it that's a 4/4 black Zombie in addition to its other colors and types.",
+  ],
+  [
+    "Exert",
+    "2G",
+    "Tap target creature and put X stun counters on it, where X is your deck's star rank.",
+  ],
+];
+
+//write assembler function that stamps code variable (and color? and icon?) onto each card and renders it as an object
+
 const tricks = [
   {
     name: "Shackle",
