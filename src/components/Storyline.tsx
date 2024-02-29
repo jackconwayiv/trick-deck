@@ -59,7 +59,13 @@ export default function Storyline({
         <b>Voyager MTG</b> is a fan-created co-op format for{" "}
         <b>Magic: the Gathering</b> where you and your fellow planeswalkers team
         up to battle against AI opponents and level up your deck through the
-        course of a storyline campaign. LEARN MORE (coming soon).
+        course of a storyline campaign.{" "}
+        <button
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate(`/welcome`)}
+        >
+          LEARN MORE
+        </button>
       </p>
       <hr />
       <div

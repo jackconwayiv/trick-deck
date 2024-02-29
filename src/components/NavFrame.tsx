@@ -23,6 +23,13 @@ export default function NavFrame({
           ⚡ Voyager MTG 🎲
         </h1>
         <div style={{ padding: "5px", margin: "5px" }}>
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/welcome")}
+          >
+            👋 welcome
+          </span>{" "}
+          |{" "}
           <span style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
             🏠 storyline
           </span>{" "}
@@ -41,6 +48,13 @@ export default function NavFrame({
             onClick={() => navigate("/deckbuilding")}
           >
             🃏 deckbuilding
+          </span>{" "}
+          |{" "}
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/printandplay")}
+          >
+            🖨️ print & play
           </span>{" "}
           |{" "}
           <span
