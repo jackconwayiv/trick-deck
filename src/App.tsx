@@ -15,7 +15,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<NavFrame campaignCode={campaignCode} scenarioNumber={scenarioNumber} />}
+          element={
+            <NavFrame
+              campaignCode={campaignCode}
+              scenarioNumber={scenarioNumber}
+            />
+          }
         >
           <Route
             index
@@ -28,7 +33,6 @@ function App() {
               />
             }
           />
-          <Route path="trickdeck/:campaignCode/:scenarioNumber" element={<TrickDeck />} />
           <Route path="deckbuilding" element={<Deckbuilding />} />
           <Route path="glossary" element={<Glossary />} />
           <Route
@@ -36,6 +40,10 @@ function App() {
             element={<Scenario setScenarioNumber={setScenarioNumber} />}
           />
         </Route>
+        <Route
+          path="trickdeck/:campaignCode/:scenarioNumber"
+          element={<TrickDeck />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

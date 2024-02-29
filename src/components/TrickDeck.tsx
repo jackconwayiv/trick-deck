@@ -110,6 +110,7 @@ export default function TrickDeck() {
   };
   return (
     <div className="App">
+      <h1>⚡ Voyager MTG 🎲</h1>
       <h3>Draw from the {campaignCode} Trick Deck:</h3>
       {renderKeypad()}
       <div
