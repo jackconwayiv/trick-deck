@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { campaigns } from "../data/campaigns";
 import { CampaignType, ScenarioType } from "../data/types";
 import "../styles.css";
@@ -5,34 +6,27 @@ interface StorylineProps {
   campaign: CampaignType;
   setCampaign: React.Dispatch<React.SetStateAction<CampaignType>>;
   scene: ScenarioType;
-  setscene: React.Dispatch<React.SetStateAction<ScenarioType>>;
+  setScene: React.Dispatch<React.SetStateAction<ScenarioType>>;
 }
 export default function Storyline({
   campaign,
   setCampaign,
   scene,
-  setscene,
+  setScene,
 }: StorylineProps) {
+  const navigate = useNavigate();
   const renderCampaignButtons = () => {
     return campaigns.map((camp, i) => (
-      <button
-        style={{ cursor: "pointer" }}
-        key={i}
-        onClick={() => setCampaign(camp)}
-      >
+      <option key={i} value={i}>
         {camp.title}
-      </button>
+      </option>
     ));
   };
   const renderScenarioButtons = () => {
     return campaign.scenarios.map((scene: ScenarioType, i) => (
-      <button
-        style={{ cursor: "pointer" }}
-        key={i}
-        onClick={() => setscene(scene)}
-      >
+      <option key={i} value={i}>
         [{campaign.scenarios.indexOf(scene) + 1}] {scene.title}
-      </button>
+      </option>
     ));
   };
   const renderHistory = () => {
@@ -62,18 +56,61 @@ export default function Storyline({
         course of a storyline campaign. LEARN MORE (coming soon).
       </p>
       <hr />
-      <h1>Campaign: {campaign.title}</h1>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <div>
+          <h4>Select your campaign:</h4>
+          <select
+            value={campaigns.indexOf(campaign)}
+            onChange={(e) => {
+              setCampaign(campaigns[parseInt(e.target.value)]);
+              setScene(campaigns[parseInt(e.target.value)].scenarios[0]);
+            }}
+          >
+            {renderCampaignButtons()}
+          </select>
+        </div>
+        <div>
+          <h4>Select your scenario:</h4>
+          <select
+            value={campaign.scenarios.indexOf(scene)}
+            onChange={(e) =>
+              setScene(campaign.scenarios[parseInt(e.target.value)])
+            }
+          >
+            {renderScenarioButtons()}
+          </select>
+        </div>
+      </div>
+      <h1>
+        Campaign: [{campaign.code}] {campaign.title}
+      </h1>
       <h3>{campaign.description}</h3>
-      <h2>Current Scenario: {scene.title}</h2>
+      <h2>
+        Current Scenario: [{campaign.scenarios.indexOf(scene) + 1}]{" "}
+        {scene.title}
+      </h2>
       <h4>Description: {scene.intro}</h4>
       <h4>Objective: {scene.objective}</h4>
-      <hr />
-      <h4>Select your campaign:</h4>
-      {renderCampaignButtons()}
-      <h4>Select your scenario:</h4>
-      {renderScenarioButtons()}
-      <hr />
-      {renderHistory()}
+      <button
+        style={{ cursor: "pointer" }}
+        onClick={() =>
+          navigate(
+            `/scenario/${campaign.code}/${
+              campaign.scenarios.indexOf(scene) + 1
+            }`
+          )
+        }
+      >
+        Begin Scenario
+      </button>
+      {campaign.scenarios.indexOf(scene) > 0 && <hr />}
+      {campaign.scenarios.indexOf(scene) > 0 && renderHistory()}
     </>
   );
 }

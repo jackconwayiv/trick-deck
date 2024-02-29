@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { colorDictionary, triggerDictionary } from "../data/dictionaries";
 import { NexusType } from "../data/types";
 import "../styles.css";
@@ -7,6 +8,7 @@ interface NexusProps {
 }
 
 export default function Nexus({ nexus }: NexusProps) {
+  const [isDead, setIsDead] = useState<boolean>(false);
   const renderCounters = () => {
     return nexus.counters.map((counter, i) => {
       return <Counter key={i} counter={counter} />;
@@ -31,8 +33,10 @@ export default function Nexus({ nexus }: NexusProps) {
           flexDirection: "column",
           justifyContent: "space-between",
           width: "30vw",
-          height: "30vh",
-          backgroundColor: colorDictionary[nexus.color].color,
+          minHeight: "30vh",
+          backgroundColor: isDead
+            ? "#BBBBBB"
+            : colorDictionary[nexus.color].color,
           padding: "5px",
           margin: "5px",
         }}
@@ -49,6 +53,14 @@ export default function Nexus({ nexus }: NexusProps) {
             <span style={{ fontSize: "24px", fontWeight: "bold" }}>
               {colorDictionary[nexus.color].symbol} {nexus.name}
             </span>
+            {!nexus.isEmblem && (
+              <button
+                style={{ margin: "5px" }}
+                onClick={() => setIsDead(!isDead)}
+              >
+                {isDead ? "dead" : "alive"}
+              </button>
+            )}
           </div>
           <div
             style={{

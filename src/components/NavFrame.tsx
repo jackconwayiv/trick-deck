@@ -20,6 +20,10 @@ export default function NavFrame({ campaign, scene }: NavFrameProps) {
         <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
           ⚡ Voyager MTG 🎲
         </h1>
+        <h4>
+          {campaign.title} | Scene {campaign.scenarios.indexOf(scene) + 1}:{" "}
+          {scene.title}
+        </h4>
         <div style={{ padding: "5px", margin: "5px" }}>
           <span style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
             storyline

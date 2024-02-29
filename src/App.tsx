@@ -11,7 +11,7 @@ import { CampaignType, ScenarioType } from "./data/types";
 
 function App() {
   const [campaign, setCampaign] = useState<CampaignType>(akhCampaign);
-  const [scene, setscene] = useState<ScenarioType>(akhCampaign.scenarios[0]);
+  const [scene, setScene] = useState<ScenarioType>(akhCampaign.scenarios[0]);
   return (
     <BrowserRouter>
       <Routes>
@@ -26,14 +26,14 @@ function App() {
                 campaign={campaign}
                 setCampaign={setCampaign}
                 scene={scene}
-                setscene={setscene}
+                setScene={setScene}
               />
             }
           />
           <Route path="trickdeck" element={<TrickDeck />} />
           <Route path="deckbuilding" element={<Deckbuilding />} />
           <Route path="glossary" element={<Glossary />} />
-          <Route path="scenario/:campaign/:scene" element={<Scenario />} />
+          <Route path="scenario/:campaign/:scene" element={<Scenario setScene={setScene} />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

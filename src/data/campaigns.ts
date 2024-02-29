@@ -9,7 +9,7 @@ const akh01a: NexusType = {
   text: [
     {
       trigger: "supplicate",
-      text: "create a 1/1 white Warrior creature token with vigilance.",
+      text: "you create a 1/1 white Warrior creature token with vigilance.",
     },
     { trigger: "die", text: "each player gains 10 life." },
   ],
@@ -22,7 +22,7 @@ const akh01b: NexusType = {
   text: [
     {
       trigger: "supplicate",
-      text: "scry 1, then draw a card.",
+      text: "you scry 1, then draw a card.",
     },
     { trigger: "die", text: "each player draws a card." },
   ],
@@ -43,11 +43,11 @@ const akh01c: NexusType = {
 const akh01d: NexusType = {
   name: "Indifference of Hazoret",
   color: "R",
-  counters: [life, bricks],
+  counters: [life],
   text: [
     {
       trigger: "supplicate",
-      text: "wound a foe you're facing.",
+      text: "you wound a foe you're facing.",
     },
     { trigger: "die", text: "wound each foe in play." },
   ],
@@ -65,8 +65,9 @@ const akh01e: NexusType = {
     { trigger: "die", text: "each creature controlled by a player grows." },
   ],
 };
+
 const akh01f: NexusType = {
-  name: "Supplication",
+  name: "Show of Supplication",
   color: "C",
   counters: [],
   isEmblem: true,
@@ -87,6 +88,58 @@ const akh01: ScenarioType = {
   nexii: [akh01f, akh01a, akh01b, akh01c, akh01d, akh01e],
 };
 
+const akh02a: NexusType = {
+  name: "Scouring Sands",
+  color: "W",
+  counters: [life],
+  text: [
+    {
+      trigger: "static",
+      text: "Blighted lands lose all other abilities and types and gain `T: Add <>.`",
+    },
+    {
+      trigger: "die",
+      text: "for each blighted land in play, its controller must choose one: pay (X) or return it to its owner's hand, where X is the number of living Nexii.",
+    },
+  ],
+};
+
+const akh02b: NexusType = {
+  name: "Sweltering Sun",
+  color: "R",
+  counters: [life],
+  text: [
+    {
+      trigger: "upkeep",
+      text: "players must distribute X blight among any (unblighted) (nonbasic) lands they control, where X is the greatest star rank among players' decks.",
+    },
+    {
+      trigger: "die",
+      text: "each player blights an (unblighted) (nonbasic) land they control.",
+    },
+  ],
+};
+
+const akh02c: NexusType = {
+  name: "Shimmering Oasis",
+  color: "U",
+  counters: [life],
+  text: [
+    {
+      trigger: "upkeep",
+      text: "a player with the fewest blighted lands gets a Woe counter, plus an additional Woe counter for each dead Nexus.",
+    },
+    {
+      trigger: "strike",
+      text: "tap and stun those creatures. You may remove a blight from a land you control.",
+    },
+    {
+      trigger: "die",
+      text: "each player gets a Woe counter for each blighted land they control.",
+    },
+  ],
+};
+
 const akh02: ScenarioType = {
   title: "Beyond the Hekma",
   intro:
@@ -94,7 +147,7 @@ const akh02: ScenarioType = {
   objective: "Defeat all Nexii.",
   victory:
     "You seek water and shelter in the bustling city of Naktamun, safely within the boundaries of the Hekma's protection.",
-  nexii: [akh01d, akh01a, akh01b],
+  nexii: [akh02a, akh02b, akh02c],
 };
 
 export const akhCampaign: CampaignType = {
@@ -104,4 +157,11 @@ export const akhCampaign: CampaignType = {
   scenarios: [akh01, akh02],
 };
 
-export const campaigns = [akhCampaign];
+export const mkmCampaign: CampaignType = {
+  code: "MKM",
+  title: "Murders at Karlov Manor",
+  description: "Fingers go pointing when Zegana is mysteriously murdered...",
+  scenarios: [akh01, akh02],
+};
+
+export const campaigns = [akhCampaign, mkmCampaign];
