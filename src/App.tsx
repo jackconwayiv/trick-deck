@@ -6,34 +6,35 @@ import NavFrame from "./components/NavFrame";
 import Scenario from "./components/Scenario";
 import Storyline from "./components/Storyline";
 import TrickDeck from "./components/TrickDeck";
-import { akhCampaign } from "./data/campaigns";
-import { CampaignType, ScenarioType } from "./data/types";
 
 function App() {
-  const [campaign, setCampaign] = useState<CampaignType>(akhCampaign);
-  const [scene, setScene] = useState<ScenarioType>(akhCampaign.scenarios[0]);
+  const [campaignCode, setCampaignCode] = useState<string>("AKH");
+  const [scenarioNumber, setScenarioNumber] = useState<number>(1);
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={<NavFrame campaign={campaign} scene={scene} />}
+          element={<NavFrame campaignCode={campaignCode} scenarioNumber={scenarioNumber} />}
         >
           <Route
             index
             element={
               <Storyline
-                campaign={campaign}
-                setCampaign={setCampaign}
-                scene={scene}
-                setScene={setScene}
+                campaignCode={campaignCode}
+                setCampaignCode={setCampaignCode}
+                scenarioNumber={scenarioNumber}
+                setScenarioNumber={setScenarioNumber}
               />
             }
           />
-          <Route path="trickdeck" element={<TrickDeck />} />
+          <Route path="trickdeck/:campaignCode/:scenarioNumber" element={<TrickDeck />} />
           <Route path="deckbuilding" element={<Deckbuilding />} />
           <Route path="glossary" element={<Glossary />} />
-          <Route path="scenario/:campaign/:scene" element={<Scenario setScene={setScene} />} />
+          <Route
+            path="scenario/:campaignCode/:scenarioNumber"
+            element={<Scenario setScenarioNumber={setScenarioNumber} />}
+          />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

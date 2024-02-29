@@ -35,4 +35,9 @@ export type CampaignType = {
   scenarios: ScenarioType[];
 };
 
-//trick card
+export type TrickCardType = {
+  name: string;
+  cost: string;
+  text: string;
+  code: string;
+};

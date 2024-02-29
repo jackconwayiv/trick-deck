@@ -1,4 +1,4 @@
-import { CampaignType, CounterType, NexusType, ScenarioType } from "./types";
+import { CampaignType, CounterType, NexusType, ScenarioType } from "../types";
 
 const life: CounterType = { name: "life", value: 20 };
 const bricks: CounterType = { name: "bricks", value: 0 };
@@ -163,5 +163,3 @@ export const mkmCampaign: CampaignType = {
   description: "Fingers go pointing when Zegana is mysteriously murdered...",
   scenarios: [akh01, akh02],
 };
-
-export const campaigns = [akhCampaign, mkmCampaign];
