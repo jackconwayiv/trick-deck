@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import campaigns from "../data/campaigns/campaignBundler";
-import { CampaignType, ScenarioType } from "../data/types";
+import { ScenarioType } from "../data/types";
 import "../styles.css";
 interface StorylineProps {
   campaignCode: string;
@@ -17,12 +16,8 @@ export default function Storyline({
 }: StorylineProps) {
   const navigate = useNavigate();
 
-  const [selectedCampaign, setSelectedCampaign] = useState<CampaignType>(
-    campaigns[campaignCode]
-  );
-  const [selectedScenario, setSelectedScenario] = useState<ScenarioType>(
-    selectedCampaign.scenarios[scenarioNumber - 1]
-  );
+  const selectedCampaign = campaigns[campaignCode];
+  const selectedScenario = selectedCampaign.scenarios[scenarioNumber - 1];
 
   const renderCampaignButtons = () => {
     return Object.values(campaigns).map((camp, i) => (
@@ -44,7 +39,7 @@ export default function Storyline({
     return selectedCampaign.scenarios
       .filter(
         (checkedScene) =>
-          selectedCampaign.scenarios.indexOf(checkedScene) < scenarioNumber
+          selectedCampaign.scenarios.indexOf(checkedScene) < scenarioNumber - 1
       )
       .map((checkedScene, i) => {
         return (
@@ -82,9 +77,7 @@ export default function Storyline({
               const newCampaignIndex = parseInt(e.target.value);
               const newCampaignCode = Object.keys(campaigns)[newCampaignIndex];
               setCampaignCode(newCampaignCode);
-              setSelectedCampaign(campaigns[newCampaignCode]);
               setScenarioNumber(1);
-              setSelectedScenario(campaigns[newCampaignCode].scenarios[0]);
             }}
           >
             {renderCampaignButtons()}
@@ -97,9 +90,6 @@ export default function Storyline({
             onChange={(e) => {
               const newScenarioNumber = parseInt(e.target.value) + 1;
               setScenarioNumber(newScenarioNumber);
-              setSelectedScenario(
-                selectedCampaign.scenarios[newScenarioNumber - 1]
-              );
             }}
           >
             {renderScenarioButtons()}
@@ -110,7 +100,9 @@ export default function Storyline({
         Campaign: [{campaignCode}] {selectedCampaign.title}
       </h1>
       <h3>{selectedCampaign.description}</h3>
-      <h2>Current Scenario: [scenarioNumber] {selectedScenario.title}</h2>
+      <h2>
+        Current Scenario: [{scenarioNumber}] {selectedScenario.title}
+      </h2>
       <h4>Description: {selectedScenario.intro}</h4>
       <h4>Objective: {selectedScenario.objective}</h4>
       <button

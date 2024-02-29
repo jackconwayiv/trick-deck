@@ -6,6 +6,7 @@ import NavFrame from "./components/NavFrame";
 import Scenario from "./components/Scenario";
 import Storyline from "./components/Storyline";
 import TrickDeck from "./components/TrickDeck";
+import Victory from "./components/Victory";
 
 function App() {
   const [campaignCode, setCampaignCode] = useState<string>("AKH");
@@ -37,7 +38,21 @@ function App() {
           <Route path="glossary" element={<Glossary />} />
           <Route
             path="scenario/:campaignCode/:scenarioNumber"
-            element={<Scenario setScenarioNumber={setScenarioNumber} />}
+            element={
+              <Scenario
+                setScenarioNumber={setScenarioNumber}
+                setCampaignCode={setCampaignCode}
+              />
+            }
+          />
+          <Route
+            path="victory/:campaignCode/:scenarioNumber"
+            element={
+              <Victory
+                setScenarioNumber={setScenarioNumber}
+                setCampaignCode={setCampaignCode}
+              />
+            }
           />
         </Route>
         <Route

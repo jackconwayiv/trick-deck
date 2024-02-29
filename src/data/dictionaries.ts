@@ -10,8 +10,8 @@ export const colorDictionary: DictionaryType = {
 };
 
 export const triggerDictionary: DictionaryType = {
-  supplicate: "☥ Whenever one of your creatures supplicates before me, ",
-  static: "♾️ ",
+  supplicate: "💥 Whenever one of your creatures supplicates before me, ",
+  static: `♾️  `,
   upkeep: "⏳ On enemy upkeep, ",
   strike: "⚔️ Whenever any number of creatures you control strike me, ",
   eachStrike: "⚔️ Whenever a creature strikes me, ",

@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import campaigns from "../data/campaigns/campaignBundler";
 import "../styles.css";
 interface NavFrameProps {
   campaignCode: string;
@@ -23,13 +22,9 @@ export default function NavFrame({
         <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
           ⚡ Voyager MTG 🎲
         </h1>
-        <h4>
-          {campaigns[campaignCode].title} | Scene {scenarioNumber}:{" "}
-          {campaigns[campaignCode].scenarios[scenarioNumber - 1].title}
-        </h4>
         <div style={{ padding: "5px", margin: "5px" }}>
           <span style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-            storyline
+            🏠 storyline
           </span>{" "}
           |{" "}
           <span
@@ -38,28 +33,21 @@ export default function NavFrame({
               navigate(`/scenario/${campaignCode}/${scenarioNumber}`)
             }
           >
-            scenario
+            ⚔️ scenario
           </span>{" "}
           |{" "}
           <span
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/deckbuilding")}
           >
-            deckbuilding
+            🃏 deckbuilding
           </span>{" "}
           |{" "}
           <span
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/glossary")}
           >
-            glossary
-          </span>{" "}
-          |{" "}
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => navigate("/trickdeck")}
-          >
-            tricks
+            📖 glossary
           </span>
         </div>
       </div>

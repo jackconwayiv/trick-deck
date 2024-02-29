@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import campaigns from "../data/campaigns/campaignBundler";
 import { colorDictionary } from "../data/dictionaries";
 import trickDeck from "../data/trickCards/trickBundler";
@@ -8,8 +8,10 @@ import "../styles.css";
 export default function TrickDeck() {
   const { campaignCode, scenarioNumber } = useParams();
 
+  const navigate = useNavigate();
+
   type Log = { title?: string; text: string; color: string; code?: string };
-  type Color = "W" | "U" | "B" | "R" | "G" | "C"; //also add C and Z?
+  type Color = "W" | "U" | "B" | "R" | "G" | "C"; //also add Z?
 
   const [log, setLog] = useState<Log[]>([]);
 
@@ -110,8 +112,12 @@ export default function TrickDeck() {
   };
   return (
     <div className="App">
-      <h1>⚡ Voyager MTG 🎲</h1>
-      <h3>Draw from the {campaignCode} Trick Deck:</h3>
+      <h1 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+        ⚡ Voyager MTG 🎲
+      </h1>
+      <h3>
+        Draw from the Trick Deck for {campaignCode} Scenario {scenarioNumber}:
+      </h3>
       {renderKeypad()}
       <div
         style={{

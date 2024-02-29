@@ -5,9 +5,10 @@ import "../styles.css";
 import Counter from "./Counter";
 interface NexusProps {
   nexus: NexusType;
+  isRevealed: boolean;
 }
 
-export default function Nexus({ nexus }: NexusProps) {
+export default function Nexus({ nexus, isRevealed }: NexusProps) {
   const [isDead, setIsDead] = useState<boolean>(false);
   const renderCounters = () => {
     return nexus.counters.map((counter, i) => {
@@ -15,14 +16,16 @@ export default function Nexus({ nexus }: NexusProps) {
     });
   };
   const renderText = () => {
-    return nexus.text.map((text, i) => {
-      return (
-        <div key={i}>
-          {triggerDictionary[text.trigger]}
-          {text.text}
-        </div>
-      );
-    });
+    if (isRevealed)
+      return nexus.text.map((text, i) => {
+        return (
+          <div key={i}>
+            {triggerDictionary[text.trigger]}
+            {text.text}
+          </div>
+        );
+      });
+    else return <div>Phased out until revealed after setup turns.</div>;
   };
   return (
     <>
@@ -33,10 +36,11 @@ export default function Nexus({ nexus }: NexusProps) {
           flexDirection: "column",
           justifyContent: "space-between",
           width: "30vw",
-          minHeight: "30vh",
-          backgroundColor: isDead
-            ? "#BBBBBB"
-            : colorDictionary[nexus.color].color,
+          minHeight: isRevealed ? "30vh" : "15vh",
+          backgroundColor:
+            isDead || !isRevealed
+              ? "#BBBBBB"
+              : colorDictionary[nexus.color].color,
           padding: "5px",
           margin: "5px",
         }}
@@ -55,6 +59,7 @@ export default function Nexus({ nexus }: NexusProps) {
             </span>
             {!nexus.isEmblem && (
               <button
+                disabled={!isRevealed}
                 style={{ margin: "5px" }}
                 onClick={() => setIsDead(!isDead)}
               >
@@ -85,7 +90,7 @@ export default function Nexus({ nexus }: NexusProps) {
               justifyContent: "space-evenly",
             }}
           >
-            {renderCounters()}
+            {isRevealed && renderCounters()}
           </div>
         </div>
       </div>

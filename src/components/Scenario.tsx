@@ -1,3 +1,4 @@
+import { useState } from "react";
 import QRCode from "react-qr-code";
 import { useNavigate, useParams } from "react-router-dom";
 import campaigns from "../data/campaigns/campaignBundler";
@@ -7,10 +8,17 @@ import "../styles.css";
 import Nexus from "./Nexus";
 
 interface ScenarioProps {
+  setCampaignCode: React.Dispatch<React.SetStateAction<string>>;
   setScenarioNumber: React.Dispatch<React.SetStateAction<number>>;
 }
-export default function Scenario({ setScenarioNumber }: ScenarioProps) {
+export default function Scenario({
+  setScenarioNumber,
+  setCampaignCode,
+}: ScenarioProps) {
   const { campaignCode, scenarioNumber } = useParams();
+
+  const [isRevealed, setIsRevealed] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const campaign = campaigns[campaignCode!];
   const scenario = campaign.scenarios[parseInt(scenarioNumber!) - 1];
@@ -22,12 +30,11 @@ export default function Scenario({ setScenarioNumber }: ScenarioProps) {
   };
   const renderNexii = () => {
     return scenario.nexii.map((nexus: NexusType, i) => {
-      return <Nexus key={i} nexus={nexus} />;
+      return <Nexus key={i} nexus={nexus} isRevealed={isRevealed} />;
     });
   };
   return (
     <div>
-      <QRCode onClick={handleQRClick} size={150} value={trickDeckURL} />
       <div
         style={{
           display: "flex",
@@ -45,11 +52,16 @@ export default function Scenario({ setScenarioNumber }: ScenarioProps) {
         <div>Objective: {scenario.objective}</div>
         <button
           onClick={() => {
-            setScenarioNumber(parseInt(scenarioNumber! + 1));
-            navigate(`/`);
+            if (isRevealed) {
+              setScenarioNumber(parseInt(scenarioNumber!));
+              setCampaignCode(campaignCode!);
+              navigate(`/victory/${campaignCode}/${scenarioNumber}`);
+            } else {
+              setIsRevealed(true);
+            }
           }}
         >
-          Complete Scenario
+          {isRevealed ? `Complete Scenario` : `Reveal Nexii`}
         </button>
         <div>
           Enemy Deck:
@@ -68,6 +80,12 @@ export default function Scenario({ setScenarioNumber }: ScenarioProps) {
         }}
       >
         {renderNexii()}
+        <QRCode
+          style={{ margin: "50px" }}
+          onClick={handleQRClick}
+          size={150}
+          value={trickDeckURL}
+        />
       </div>
     </div>
   );
