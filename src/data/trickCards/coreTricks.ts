@@ -1,4 +1,3 @@
-//write assembler function that stamps code variable (and color? and icon?) onto each card and renders it as an object
 const tricks = [
   [
     "Shackle",

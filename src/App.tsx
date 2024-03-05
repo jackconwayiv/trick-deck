@@ -9,10 +9,12 @@ import Storyline from "./components/Storyline";
 import TrickDeck from "./components/TrickDeck";
 import Victory from "./components/Victory";
 import Welcome from "./components/Welcome";
+import { readStorage } from "./data/utils";
 
 function App() {
-  const [campaignCode, setCampaignCode] = useState<string>("AKH");
-  const [scenarioNumber, setScenarioNumber] = useState<number>(1);
+  const { code, scene } = readStorage();
+  const [campaignCode, setCampaignCode] = useState<string>(code);
+  const [scenarioNumber, setScenarioNumber] = useState<number>(scene);
   return (
     <BrowserRouter>
       <Routes>

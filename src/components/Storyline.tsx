@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import campaigns from "../data/campaigns/campaignBundler";
 import { ScenarioType } from "../data/types";
+import { writeStorage } from "../data/utils";
 import "../styles.css";
 interface StorylineProps {
   campaignCode: string;
@@ -64,7 +65,7 @@ export default function Storyline({
           style={{ cursor: "pointer" }}
           onClick={() => navigate(`/welcome`)}
         >
-          LEARN MORE
+          Learn More
         </button>
       </p>
       <hr />
@@ -84,6 +85,7 @@ export default function Storyline({
               const newCampaignCode = Object.keys(campaigns)[newCampaignIndex];
               setCampaignCode(newCampaignCode);
               setScenarioNumber(1);
+              writeStorage(newCampaignCode, 1);
             }}
           >
             {renderCampaignButtons()}
@@ -96,6 +98,7 @@ export default function Storyline({
             onChange={(e) => {
               const newScenarioNumber = parseInt(e.target.value) + 1;
               setScenarioNumber(newScenarioNumber);
+              writeStorage(campaignCode, newScenarioNumber);
             }}
           >
             {renderScenarioButtons()}
